@@ -10,6 +10,4 @@ public class JunitSeleniumHelper extends WebDriversImpl {
         long totalTime = finish - start;
         return totalTime;
     }
-
-
 }

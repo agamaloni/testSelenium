@@ -11,6 +11,5 @@ public final class XpathField {
     public static final String SOLUTIONS = "//*[@id=\"block-tb-megamenu-main-menu\"]/div/div/ul/li[2]/a";
     public static final String USE_CASE = "//*[@id=\"tb-megamenu-column-4\"]/div/ul/li[2]/a";
     public static final String COMPLIANCE_AUDITING = "//*[@id=\"tb-megamenu-column-2\"]/div/ul/li[3]/a";
-
-
-}
+    public static final String GOOGLE_SEARCH= "//*[@id=\"lst-ib\"]";
+    }

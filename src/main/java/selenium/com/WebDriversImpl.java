@@ -1,10 +1,17 @@
 package selenium.com;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by aloni on 26/05/17.
@@ -12,20 +19,46 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 public class WebDriversImpl {
     WebDriver driver;
 
-    protected WebDriver useSeleniumHtml(){
+    public WebDriver useSeleniumHtml(){
         driver = new HtmlUnitDriver();
-        driver.get("http://google.co.il");
+        driver.get(PagesPath.GOOGLE);
+        setPageLoadTime(driver,30);
         return driver;
     }
 
-    protected WebDriver useSeleniumFirefox(){
+    public WebDriver useSeleniumFirefox(){
         driver = new FirefoxDriver();
-        driver.get("http://google.co.il");
+        driver.get(PagesPath.GOOGLE);
+        setPageLoadTime(driver,30);
         return driver;
     }
-    protected WebDriver useSeleniumChrome(){
+    public WebDriver useSeleniumChrome(){
         driver = new ChromeDriver();
-        driver.get("https://www.skyboxsecurity.com");
+        driver.get(PagesPath.GOOGLE);
+        setPageLoadTime(driver,30);
         return driver;
     }
+    public WebDriver setPageLoadTime(WebDriver driver,int sec){
+        driver.manage().timeouts().pageLoadTimeout(sec, TimeUnit.SECONDS);
+        return driver;
+    }
+    public void countLines(List<WebElement> urls){
+        int count = 0;
+        for (WebElement url : urls) {
+            System.out.println(url.getAttribute("href"));
+            String filtering=url.getText();
+            if(filtering.equals("Skybox Security"))
+                count++;
+        }
+        System.out.println("Total count : "+count);
+    }
+    public WebDriver loadElementById(WebDriver driver, String id){
+        new WebDriverWait(driver, 6000).until(ExpectedConditions.presenceOfElementLocated(By.id(id)));
+        return driver ;
+    }
+    public WebDriver loadElementByXpath(WebDriver driver, String xpth){
+        new WebDriverWait(driver, 6000).until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpth)));
+        return driver ;
+    }
+
 }
