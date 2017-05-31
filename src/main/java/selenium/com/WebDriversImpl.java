@@ -47,7 +47,7 @@ public class WebDriversImpl {
         for (WebElement url : urls) {
             System.out.println(url.getAttribute("href"));
             String filtering=url.getText();
-            if(filtering.equals("Skybox Security"))
+            if(filtering.startsWith("nana"))
                 count++;
         }
         System.out.println("Total count : "+count);
@@ -56,8 +56,8 @@ public class WebDriversImpl {
         new WebDriverWait(driver, 6000).until(ExpectedConditions.presenceOfElementLocated(By.id(id)));
         return driver ;
     }
-    public WebDriver loadElementByXpath(WebDriver driver, String xpth){
-        new WebDriverWait(driver, 6000).until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpth)));
+    public WebDriver loadElementByXpath(WebDriver driver, String xpath){
+        new WebDriverWait(driver, 6000).until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
         return driver ;
     }
 
